@@ -2,10 +2,10 @@ import { Client, Account, ID } from "appwrite";
 import config from "../config/config";  
 
 export class AuthService {
-    client = new Client();
+    client;
     account ;
     constructor() {
-        this.client
+        this.client = new Client()
             .setEndpoint(config.appwriteUrl)
             .setProject(config.appwriteProjectId);
         this.account = new Account(this.client);
@@ -45,7 +45,10 @@ export class AuthService {
 
     async getCurrentUser() {
         try{
-            return await this.account.get();
+            console.log("trying to get currnt user: ")
+            const result = await this.account.get();
+            console.log(result);
+            return result
         }catch(error) {
             console.log("Appwrite serive :: getCurrentUser :: error", error);
         }

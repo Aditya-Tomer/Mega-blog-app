@@ -1,4 +1,4 @@
-import config from 'src/config';
+import config from '../config/config';
 import {Client, ID, Databases, Storage, Query} from 'appwrite';
 
 export class Service {
@@ -88,7 +88,7 @@ export class Service {
                 config.appwriteCollectionId,
                 queries
             )
-        }catch{
+        }catch(error){
             console.log('Appwrite service :: getPosts :: error', error);
             return false;
         }
