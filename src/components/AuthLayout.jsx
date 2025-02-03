@@ -12,9 +12,7 @@ function AuthLayout({children, authentication = true}) {
             nevigate('/login')
         } else if(!authentication && authStatus !== authentication){
             nevigate('/')
-        } else {
-            nevigate('/signup')
-        }
+        } 
         setLoder(false)
     },[authStatus, nevigate, authentication ])
 

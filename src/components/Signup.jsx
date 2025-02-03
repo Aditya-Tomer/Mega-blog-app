@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import authService from '../appwrite/auth'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,9 +12,10 @@ function Signup() {
     const nevigate = useNavigate()
     const [error, setError] = useState('')
     const dispatch = useDispatch()
-    const [register, handleSubmit] = useForm();
+    const {register, handleSubmit} = useForm();
 
     const create = async(data) => {
+        console.log('function called button working')
         setError('');
         try{
             const userData = await authService.createAccount(data)
@@ -61,7 +63,7 @@ function Signup() {
                         label = 'email'
                         placeholder = 'Enter your email'
                         {...register('email', {
-                            require: true,
+                            required: true,
                             validate: {
                                 matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                 "Email address must be a valid address",
@@ -70,10 +72,11 @@ function Signup() {
                     />
 
                     <Input 
+                        type = 'password'
                         label = 'Password'
                         placeholder = 'Enter your password'
                         {...register('Password', {
-                            require: true
+                            required: true
                         })}
                     />
                     <Button type='submit' className='w-full'> Create Account</Button>

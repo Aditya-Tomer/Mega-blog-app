@@ -5,6 +5,7 @@ import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
 import Footer from './components/Footer/Footer'
 import Hearder from './components/Header/Header'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   const [loading, setLoading]  = useState(true);
@@ -31,6 +32,7 @@ function App() {
     <div className = "min-h-screen flex flex-wrap content-between bg-gray-400" >
       <div>
         <Hearder/>
+        <Outlet/>
         <Footer/>
       </div>
     </div>
